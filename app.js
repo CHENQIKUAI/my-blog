@@ -6,6 +6,7 @@ var logger = require('morgan');
 const flash = require('connect-flash')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
+const pkg = require('./package')
 const config = require('config-lite')(__dirname)
 const routers = require('./routes');
 
