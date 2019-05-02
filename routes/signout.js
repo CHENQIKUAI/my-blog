@@ -3,12 +3,11 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('signup');
+  res.send('signuot')
 });
 
 router.post('/', function(req, res, next) {
-    req.session.email = req.fields.email;
-    res.redirect('posts');
+    res.send('signuot')
   });
 
 module.exports = router;
