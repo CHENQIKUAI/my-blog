@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "hotnode ./bin/www"
   },
   "dependencies": {
     "config-lite": "2.1.0",
@@ -16,6 +16,8 @@
     "express-formidable": "1.2.0",
     "express-session": "1.16.1",
     "http-errors": "~1.6.2",
-    "morgan": "~1.9.0"
+    "mongoose": "5.5.5",
+    "morgan": "~1.9.0",
+    "sha1": "1.1.1"
   }
 }
