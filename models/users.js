@@ -7,11 +7,8 @@ module.exports = {
         return newUesr.save();
     },
 
-    // // 通过用户名获取用户信息
-    // getUserByName: function getUserByName(name) {
-    //     return User
-    //         .findOne({ name: name })
-    //         .addCreatedAt()
-    //         .exec()
-    // }
+    // 通过邮件获取用户信息
+    getUserByMsg: (emailAndPassword) => {
+        return userModel.find(emailAndPassword);
+    }
 }

@@ -35,8 +35,9 @@
             <div class="form-group">
                 <label for="InputAvatar">设置头像</label>
                 <input type="file" class="form-control" id="InputAvatar" name="avatar">
+                <small id="avatarHelp" class="form-text text-danger" style="display:none">请上传头像</small>
             </div>
-            <button type="submit" class="btn btn-primary center">Submit</button>
+            <button type="submit" class="btn btn-primary center">注册</button>
         </form>
     </div>
     <div class="col-3"></div>
@@ -44,47 +45,47 @@
 
 
 <script>
-    let errNum = 0;
+    const isErr = [true, true, true, true];
 
     const handleEmailInput = () => {
         var pattern = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
         const address = $('#InputEmail').val();
         if (!pattern.test(address)) {
             $('#emailHelp').css('display', 'inline');
-            errNum++;
+            isErr[0] = true;
         } else {
             $('#emailHelp').css('display', 'none');
-            errNum--;
+            isErr[0] = false;
         }
     }
 
     const handleNickNameInput = () => {
         if ($('#InputNickName').val().trim() == '') {
             $('#nicknameHelp').css('display', 'inline');
-            errNum++;
+            isErr[1] = true;
         } else {
             $('#nicknameHelp').css('display', 'none');
-            errNum--;
+            isErr[1] = false;
         }
     }
 
     const handlePassword1Input = () => {
         if ($('#InputPassword1').val().length < 6) {
             $('#password1Help').css('display', 'inline')
-            errNum++;
+            isErr[2] = true;
         } else {
             $('#password1Help').css('display', 'none')
-            errNum--;
+            isErr[2] = false;
         }
     }
 
     const handlePassword2Input = () => {
         if ($('#InputPassword1').val() !== $('#InputPassword2').val()) {
             $('#password2Help').css('display', 'inline');
-            errNum++;
+            isErr[3] = true;
         } else {
             $('#password2Help').css('display', 'none');
-            errNum--;
+            isErr[3] = false;
         }
     }
 
@@ -104,6 +105,10 @@
         handlePassword2Input();
     })
 
+    $('#InputAvatar').focus((e) => {
+        $('#avatarHelp').css('display', 'none');
+    })
+
     $('form').submit((e) => {
 
         handleNickNameInput();
@@ -111,7 +116,20 @@
         handlePassword1Input();
         handlePassword2Input();
 
-        if (errNum !== 0 && $('#InputAvatar').val() == '') {
+        const errNum = isErr.reduce((cur, next) => {
+            if (next == true) {
+                return cur + 1;
+            }else{
+                return cur;
+            }
+        }, 0);
+
+        if ($('#InputAvatar').val() == "") {
+            $('#avatarHelp').css('display', 'inline');
+            e.preventDefault();
+        }
+
+        if (errNum !== 0) {
             e.preventDefault();
         }
     })

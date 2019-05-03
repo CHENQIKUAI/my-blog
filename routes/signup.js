@@ -14,7 +14,7 @@ router.post('/', function (req, res, next) {
     const email = req.fields.email;
     const nickname = req.fields.nickname;
     const password = sha1(req.fields.password);
-    const avatar = req.files.avatar.path.split(path.sep).pop()
+    const avatar = 'req.files.avatar.path.split(path.sep).pop()'
 
     const user = {
         email: email,
@@ -26,8 +26,7 @@ router.post('/', function (req, res, next) {
         res.redirect('posts');
         delete user.password;
     }).catch((err) => {
-        console.log(err);
-        res.send("error in create")
+        res.send(JSON.stringify(err));
     });
 });
 

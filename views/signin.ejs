@@ -1,0 +1,77 @@
+<%- include('header') %>
+
+<div>
+    <p class="text-center">NEWBLOG</p>
+</div>
+<div class="row">
+
+    <div class="col-3"></div>
+    <div class="col-6">
+        <form class="form-signup" method="POST" action="/signin" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="InputEmail1">邮箱</label>
+                <input type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp"
+                    placeholder="Enter email" name="email">
+                <small id="emailHelp" class="form-text text-danger" style="display:none">请输入正确的邮箱地址</small>
+            </div>
+
+            <div class="form-group">
+                <label for="InputPassword2">密码</label>
+                <input type="password" class="form-control" id="InputPassword" placeholder="Enter password"
+                    name="password">
+                <small id="passwordHelp" class="form-text text-danger" style="display:none">你还没有输入密码</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary center">登录</button>
+        </form>
+    </div>
+    <div class="col-3"></div>
+</div>
+
+
+<script>
+    let isErr = [true, true];
+
+    const handleEmailInput = () => {
+        var pattern = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+        const address = $('#InputEmail').val();
+        if (!pattern.test(address)) {
+            $('#emailHelp').css('display', 'inline');
+            isErr[0] = true;
+        } else {
+            $('#emailHelp').css('display', 'none');
+            isErr[0] = false;
+        }
+    }
+
+    const handlePasswordInput = () => {
+        if ($('#InputPassword').val() == "") {
+            $('#passwordHelp').css('display', 'inline')
+            isErr[1] = true;
+        } else {
+            $('#passwordHelp').css('display', 'none')
+            isErr[1] = false;
+        }
+    }
+
+    $('#InputEmail').blur((e) => {
+        handleEmailInput();
+    })
+
+    $('#InputPassword').blur((e) => {
+        handlePasswordInput();
+    })
+
+    $('form').submit((e) => {
+
+        handleEmailInput();
+        handlePasswordInput();
+
+        if (isErr[0] == true || isErr[1] == true) {
+            e.preventDefault();
+        }
+    })
+</script>
+
+
+<%- include('footer') %>
