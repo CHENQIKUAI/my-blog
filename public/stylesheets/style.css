@@ -12,3 +12,31 @@ a {
   bottom: 0;
   margin: 20px;
 }
+
+.top-nav {
+  position: fixed;
+  width: 90%;
+  top: 0;
+}
+
+.nav {
+  position: relative;
+}
+
+.write-post {
+  border: 1px solid #EA6F5A;
+  border-radius: 10px;
+  background: #EA6F5A;
+
+}
+
+.write-post a:hover,
+.write-post a:active,
+.write-post a:link,
+.write-post a {
+  color: white;
+}
+
+.posts-begin {
+  margin: 50px;
+}
