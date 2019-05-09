@@ -52,7 +52,9 @@ app.locals.blog = {
 
 // 添加模板必需的三个变量
 app.use(function (req, res, next) {
-  res.locals.email = req.session.email
+  res.locals.email = req.session.email;
+  res.locals.nickname = req.session.nickname;
+  res.locals.avatar = req.session.avatar;
   res.locals.success = req.flash('success').toString()
   res.locals.error = req.flash('error').toString()
   next()

@@ -10,11 +10,14 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    req.session.email = req.fields.email;
     const email = req.fields.email;
     const nickname = req.fields.nickname;
     const password = sha1(req.fields.password);
-    const avatar = 'req.files.avatar.path.split(path.sep).pop()'
+    const avatar = req.files.avatar.path.split(path.sep).pop()
+
+    req.session.email = email;
+    req.session.nickname = nickname;
+    req.session.avatar = avatar;
 
     const user = {
         email: email,

@@ -17,6 +17,9 @@ router.post('/', checkNotLogin, function (req, res, next) {
         if (doc.length == 1) { //登录成功
             req.flash('success', "登录成功")
             req.session.email = email;
+            req.session.nickname = doc[0].nickname;
+            req.session.avatar = doc[0].avatar;
+
             res.redirect('posts');
         } else {
             req.flash('error', "账号或密码错误");
