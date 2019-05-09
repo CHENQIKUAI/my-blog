@@ -4,13 +4,13 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-    // postFunc.getAll().then((result) => {
-    //     res.send(result);
-    // }).catch((err) => {
-    //     res.send(err);
-    // });;
+    postFunc.getAll().then((result) => {
+        res.render('posts', { posts: result });
 
-    res.render('posts');
+    }).catch((err) => {
+        res.send(err);
+    });;
+
 });
 
 router.post('/', function (req, res, next) {
