@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -13,14 +12,22 @@ a {
   margin: 20px;
 }
 
+.container{
+  width: 80%;
+}
+
 .top-nav {
-  position: fixed;
-  width: 90%;
+  position: relative;
+  width: 100%;
   top: 0;
 }
 
 .nav {
   position: relative;
+}
+
+.nav li{
+  /* line-height: 73px; */
 }
 
 .write-post {
@@ -51,4 +58,14 @@ a {
   padding: 20px;
   border: 1px solid rgb(221, 221, 221);
   border-radius: 10px;
+}
+
+.post-container{
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 10px;
+}
+
+.post-container a:hover,
+.post-container a{
+  text-decoration: none;
 }
