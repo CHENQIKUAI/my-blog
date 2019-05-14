@@ -1,7 +1,5 @@
 <%- include('header') %>
 
-<div class="posts-begin"></div>
-
 <% posts.forEach((post, index) => { %>
     <%- include('components/post-container', { post: post }) %>
 <% }) %>

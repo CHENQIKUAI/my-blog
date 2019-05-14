@@ -15,14 +15,20 @@ router.post('/', checkLogin, function (req, res, next) {
     console.log(title, content);
 
     postFunc.getAll().then((result) => {
+        let id = 0;
+        if (result.length != 0) {
+            id = result[result.length - 1].id + 1
+        }
+
         const post = {
-            id: result.length + 1,
+            id: id,
             email: req.session.email,
+            nickname: req.session.nickname,
             title: title,
             content: content,
-            view: 0
+            view: 0,
+            like: 0
         }
-        console.log(post);
         postFunc.create(post).then((result) => {
             res.redirect('posts');
         }).catch((err) => {

@@ -9,9 +9,17 @@ module.exports = {
 
     getAll: () => {
         return postModel.find();
+    },
+
+    getPostById: async (id, res) => {
+        const result = await postModel.updateOne({ id: id }, { $inc: { view: 1 } });
+
+        postModel.find({ id: id }).then((result) => {
+            res.render('post', { post: result[0] })
+        }).catch((err) => {
+        });;
+
     }
-    // // 通过邮件获取用户信息
-    // getUserByMsg: (emailAndPassword) => {
-    //     return userModel.find(emailAndPassword);
-    // }
 }
+
+

@@ -1,9 +1,17 @@
 <div class="post-container">
     <a href="/posts/<%= post.id %>">
-        <h4><%= post.title %></h4>
+        <p class="post-title"><%= post.title %></p>
 
-        <p><%= post.content %></p>
+        <p class="post-content"><%= post.content %></p>
 
-        <p><%= post.view %></p>
+        <div class="meta">
+            <span class="icon-text"> <%= post.nickname %></span>
+
+            <img class="click-icodn" src="/icon/view.png" alt="" srcset="" sizes="10">
+            <span class="icon-text"> <%= post.view %></span>
+
+            <img class="click-icodn" src="/icon/like.png" alt="" srcset="" sizes="10">
+            <span class="icon-text"> <%= post.like %></span>
+        </div>
     </a>
 </div>

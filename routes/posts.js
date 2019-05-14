@@ -13,6 +13,12 @@ router.get('/', function (req, res, next) {
 
 });
 
+router.get('/:id', function (req, res, next) {
+    const id = req.params.id;
+    postFunc.getPostById(id, res);
+});
+
+
 router.post('/', function (req, res, next) {
     res.send('posts')
 });
