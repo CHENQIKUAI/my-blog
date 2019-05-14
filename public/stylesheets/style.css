@@ -137,11 +137,44 @@ a {
 
 .edit {
   float: right;
-  border: 1px solid gray;
+  color: #9b9b9b;
+  border: 1px solid #dcdcdc;
   border-radius: 20px;
   padding: 5px 10px;
 }
 
 .edit:hover {
+  color: #9b9b9b;
   background: rgb(233, 231, 231);
+  text-decoration: none;
+}
+
+.time {
+  margin-right: 8px;
+}
+
+.like{
+  margin-bottom: 50px;
+}
+
+.like-group {
+  border: 1px solid #EA6F5A;
+  color: #EA6F5A;
+  border-radius: 30px;
+  font-size: 19px;
+  padding: 10px 25px;
+}
+
+.btn-like {
+  display: inline;
+}
+
+.modal-wrap {
+  display: inline;
+  padding-left: 5px;
+}
+
+.do-like {
+  background: #EA6F5A;
+  color: white;
 }

@@ -4,6 +4,9 @@ const postFunc = require('../models/posts');
 const checkLogin = require('../middlewares/check').checkLogin;
 var router = express.Router();
 
+
+
+
 /* GET users listing. */
 router.get('/', checkLogin, (req, res, next) => {
     res.render('write')
@@ -19,10 +22,10 @@ router.post('/', checkLogin, function (req, res, next) {
         if (result.length != 0) {
             id = result[result.length - 1].id + 1
         }
-
         const post = {
             id: id,
             email: req.session.email,
+            avatar: req.session.avatar,
             nickname: req.session.nickname,
             title: title,
             content: content,

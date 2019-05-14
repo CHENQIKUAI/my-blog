@@ -1,7 +1,7 @@
 const postModel = require('../lib/mongo').postModel
 
 module.exports = {
-    // 发布一篇文章
+
     create: (post) => {
         const newPost = new postModel(post);
         return newPost.save();
@@ -11,14 +11,13 @@ module.exports = {
         return postModel.find();
     },
 
-    getPostById: async (id, res) => {
+    getPostById: async (id) => {
         const result = await postModel.updateOne({ id: id }, { $inc: { view: 1 } });
+        return postModel.find({ id: id })
+    },
 
-        postModel.find({ id: id }).then((result) => {
-            res.render('post', { post: result[0] })
-        }).catch((err) => {
-        });;
-
+    like: (id) => {
+        postModel.updateOne({ id: id }, { $inc: { like: 1, view: -1 } }).exec();
     }
 }
 

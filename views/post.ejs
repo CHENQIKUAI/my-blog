@@ -1,27 +1,56 @@
 <%- include('header') %>
+
 <div class="container">
+
     <h1 class="single-post-title">
         <%= post.title %>
     </h1>
+
     <div class="author">
         <img class="avatar" src="/images/<%= post.avatar %>">
         <div class="info">
             <span class="name"><%= post.nickname %></span>
             <div class="meta">
-                <span>time</span>
-                <span>字数</span>
+                <span class="time"><%= post.time %></span>
+                <span>字数 <%= post.calc %></span>
                 <span>阅读 <%= post.view %></span>
                 <span>评论 0</span>
                 <span>喜欢 <%= post.like %></span>
             </div>
         </div>
-        <a href="/writer#/notebooks/32782678/notes/46773915" target="_blank" class="edit">编辑文章</a>
+        <% if(post.email == email) { %>
+        <a href="#" target="_blank" class="edit">编辑文章</a>
+        <% }%>
     </div>
 
     <div class="single-post-content">
         <%= post.content %>
     </div>
 
+    <form action="/posts/<%= post.id %>/like" method="GET">
+        <div class="like">
+            <div class="btn like-group">
+                <div class="btn-like"><a>喜欢</a></div>
+                <div class="modal-wrap"><a><%= post.like %></a></div>
+            </div>
+        </div>
+    </form>
+
+
 </div>
+
+<script>
+    $('.like-group').click((e) => {
+        if ($('.like-group').hasClass('do-like') != true) {
+            $('.like-group').addClass('do-like');
+            $('form').submit();
+            // $('.modal-wrap').addClass('.modal-wrap-like');
+        } else {
+            $('.like-group').removeClass('do-like');
+            // $('.modal-wrap').removeClass('.modal-wrap-like');
+        }
+    });
+</script>
+
 
 <%- include('footer') %>
