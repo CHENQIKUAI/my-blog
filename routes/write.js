@@ -5,17 +5,25 @@ const checkLogin = require('../middlewares/check').checkLogin;
 var router = express.Router();
 
 
-
-
-/* GET users listing. */
 router.get('/', checkLogin, (req, res, next) => {
     res.render('write')
 });
 
+
+router.get('/:id', checkLogin, (req, res, next) => {
+    postFunc.getPostById(Number(req.params.id)).then((result) => {
+        const post = result[0];
+        console.log(post)
+        res.render('write', { post: post });
+    }).catch((err) => {
+        res.send(err);
+    });
+})
+
+
 router.post('/', checkLogin, function (req, res, next) {
     const title = req.fields.title;
     const content = req.fields.content;
-    console.log(title, content);
 
     postFunc.getAll().then((result) => {
         let id = 0;
@@ -38,11 +46,17 @@ router.post('/', checkLogin, function (req, res, next) {
             res.send(err);
         });;
     }).catch((err) => {
-
+        res.send(err)
     });
+});
 
 
-
+router.post('/:id', checkLogin, function (req, res, next) {
+    const title = req.fields.title;
+    const content = req.fields.content;
+    const id = req.params.id;
+    postFunc.modifyPost(id, title, content);
+    res.redirect(`/posts/${id}`);
 });
 
 module.exports = router;

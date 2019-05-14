@@ -35,6 +35,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/:id', function (req, res, next) {
     const id = req.params.id;
+    postFunc.viewPlus(id);
 
     postFunc.getPostById(id).then((result) => {
         const post = result[0];
