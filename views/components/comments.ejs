@@ -1,0 +1,40 @@
+<div class="new-comment">
+    <div class="new-comment-container">
+        <a class="avatar-icon" data-title="<%= nickname %>">
+            <img class="avatar" src="/images/<%= avatar %>">
+        </a>
+        <form action="/comment/add" method="post"></form>
+        <textarea name="comment" cols="30" rows="10" placeholder="写下你的评论"></textarea>
+    </div>
+
+    <div class="write-function-block">
+        <div class="hint">Ctrl+Enter 发表</div>
+        <a class="btn btn-send">发送</a>
+        <a class="btn cancel">取消</a>
+    </div>
+</div>
+
+
+<div class="comment-list">
+    <%  comments.forEach((comment, index) => {  %>
+    <p><%= comment.content %></p>
+    <% }) %>
+</div>
+
+<script>
+    $('.new-comment textarea').focus((e) => {
+        $('.write-function-block').fadeIn();
+    })
+
+    $('.btn-send').click((e) => {
+        if ($('.new-comment-container').val() !== '') {
+            $('.new-comment-container form').submit();
+        } else {
+
+        }
+    });
+
+    $('.cancel').click((e) => {
+        $('.write-function-block').fadeOut();
+    })
+</script>

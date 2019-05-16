@@ -42,7 +42,10 @@ router.get('/:id', function (req, res, next) {
         post.calc = post.content.length;
         post.time = post.created.format('yyyy.MM.dd hh:mm');
 
-        res.render('post', { post: post })
+        res.render('post', {
+            post: post,
+            comments: [{ content: "halksd", postId: 10 }, { content: "halksd", postId: 10 }]
+        })
     }).catch((err) => {
         res.send(err);
     });
