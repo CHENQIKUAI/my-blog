@@ -1,9 +1,33 @@
-<%- include('header') %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NEWBLOG</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <%- include('components/notification') %>
 
 <div class="posts-begin"></div>
 <% if(typeof post == 'undefined'){ %>
 <div class="post-write row">
-    <div class="col-2"></div>
+    <div class="col-1"></div>
     <div class="col-1">
         <a class="" data-title="<%= nickname %>">
             <img class="avatar" src="/images/<%= avatar %>">
@@ -28,7 +52,7 @@
 </div>
 <% }else{ %>
 <div class="post-write row">
-    <div class="col-2"></div>
+    <div class="col-1"></div>
     <div class="col-1">
         <a class="" data-title="<%= nickname %>">
             <img class="avatar" src="/images/<%= avatar %>">
@@ -50,6 +74,12 @@
                 <button type="submit" class="form-control btn-primary btn">发布</button>
             </form>
         </div>
+
+    </div>
+    <div class="col-2">
+        <form action="/write/<%= post.id %>/delete" method="POST" enctype="multipart/form-data">
+            <button type="submit" class="form-control btn-danger btn">取消发布</button>
+        </form>
     </div>
 </div>
 <% } %>

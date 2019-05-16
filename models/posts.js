@@ -25,6 +25,10 @@ module.exports = {
 
     modifyPost: (id, title, content) => {
         postModel.updateOne({ id: id }, { title: title, content: content }).exec();
+    },
+
+    deletePost: (id) => {
+        return postModel.remove({id: id});
     }
 }
 

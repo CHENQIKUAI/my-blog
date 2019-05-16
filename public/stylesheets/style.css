@@ -1,5 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  min-width: 1000px;
 }
 
 a {
@@ -32,6 +33,10 @@ a {
   font-size: 25px;
 }
 
+.notificaion {
+  margin: 20px 0;
+}
+
 .write-post {
   border: 1px solid #EA6F5A;
   border-radius: 10px;
@@ -58,6 +63,7 @@ a {
 
 .post-border {
   padding: 20px;
+  margin-bottom: 50px;
   border: 1px solid rgb(221, 221, 221);
   border-radius: 10px;
 }
@@ -76,6 +82,7 @@ a {
 }
 
 .post-title {
+  word-wrap: break-word;
   font-size: 18px;
   color: #333;
   font-weight: 700;
@@ -84,6 +91,7 @@ a {
 .post-content {
   color: #999;
   font-size: 13px;
+  word-wrap: break-word;
 }
 
 .click-icon {
@@ -103,12 +111,14 @@ a {
 }
 
 .single-post-title {
+  word-wrap: break-word;
   margin-top: 20px;
 }
 
 .single-post-content {
   padding: 50px 0;
   font-size: 16px;
+  word-wrap: break-word;
 }
 
 .info {
@@ -153,7 +163,7 @@ a {
   margin-right: 8px;
 }
 
-.like{
+.like {
   margin-bottom: 50px;
 }
 

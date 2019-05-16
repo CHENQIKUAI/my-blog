@@ -1,5 +1,5 @@
 <div class="top-nav">
-    <% if(email){ %>
+
     <ul class="nav justify-content-around">
 
         <li class="nav-item mr-auto p-2">
@@ -9,6 +9,7 @@
                 </span>
             </a>
         </li>
+        <% if(email){ %>
         <li class="nav-item">
             <a class="nav-link" href="/signout">
                 <span>
@@ -25,6 +26,16 @@
                 </a>
             </div>
         </li>
+        <% }else{ %>
+        <li class="nav-item">
+            <div class="login-button">
+                <a class="nav-link active" href="/signin">
+                    <span>
+                        登录
+                    </span>
+                </a>
+            </div>
+        </li>
+        <% } %>
     </ul>
-    <% } %>
 </div>
