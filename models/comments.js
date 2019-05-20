@@ -6,7 +6,8 @@ module.exports = {
         return commentModel.find({ postId: postId });
     },
 
-    removeCommentById: (_id) => {
+    removeCommentById: (_id, postId) => {
+        postModel.updateOne({ id: postId }, { $inc: { view: -1 } }).exec();
         return commentModel.findByIdAndRemove(_id);
     },
 

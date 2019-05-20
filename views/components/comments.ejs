@@ -46,7 +46,7 @@
                 </div>
             </div>
             <% if(comment.author.email == email || post.email == email) {%>
-            <a href="/comments/remove/<%= comment._id %>" class="delete-comment edit">删除</a>
+            <a href="/comments/remove/<%= comment._id %>/<%= post.id %>" class="delete-comment-<%= index %> edit">删除</a>
             <% }%>
         </div>
         <div class="comment-content">
@@ -66,20 +66,11 @@
         }
     }
 
-    hotkeys('ctrl+enter', (event, handler) => {
-        switch (handler.key) {
-            case "ctrl+enter":
-                alert('you pressed ctrl+enter!');
-                break;
-        }
-    });
-
     $('.textarea-comment').on('keydown', (e) => {
         if (e.keyCode === 13 && e.ctrlKey) {
             submitFunc();
         };
     })
-
 
     $('.new-comment textarea').focus((e) => {
         $('.write-function-block').fadeIn();

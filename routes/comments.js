@@ -30,9 +30,11 @@ router.post('/add', (req, res, next) => {
 })
 
 //删除评论
-router.get('/remove/:_id', (req, res, next) => {
+router.get('/remove/:_id/:postId', (req, res, next) => {
     const _id = req.params._id;
-    commentFunc.removeCommentById(mongoose.Types.ObjectId(_id)).then((result) => {
+    const postId = req.params.postId;
+
+    commentFunc.removeCommentById(mongoose.Types.ObjectId(_id), postId).then((result) => {
         res.redirect('back');
     }).catch((err) => {
         res.send('error');
