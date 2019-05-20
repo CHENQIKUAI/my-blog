@@ -1,5 +1,6 @@
 var express = require('express');
 const postFunc = require('../models/posts');
+const commentFunc = require('../models/comments');
 var router = express.Router();
 Date.prototype.format = function (fmt) {
     var o = {
@@ -34,21 +35,33 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/:id', function (req, res, next) {
-    const id = req.params.id;
+    const id = Number(req.params.id);
     postFunc.viewPlus(id);
 
-    postFunc.getPostById(id).then((result) => {
-        const post = result[0];
+    Promise.all([
+        postFunc.getPostById(id),
+        commentFunc.getCommentsByPostId(id)
+    ]).then((result) => {
+        const post = result[0][0];
+        const comments = result[1];
+
         post.calc = post.content.length;
         post.time = post.created.format('yyyy.MM.dd hh:mm');
 
-        res.render('post', {
+        for (let i = 0; i < comments.length; ++i) {
+            comments[i].time = comments[i].created.format('yyyy.MM.dd hh:mm');
+        }
+
+        const data = {
             post: post,
-            comments: [{ content: "halksd", postId: 10 }, { content: "halksd", postId: 10 }]
-        })
+            comments: comments
+        }
+        res.render('post', data);
+
     }).catch((err) => {
         res.send(err);
     });
+
 });
 
 router.get('/:id/like', (req, res, next) => {

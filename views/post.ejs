@@ -27,7 +27,7 @@
         <%= post.content %>
     </div>
 
-    <form action="/posts/<%= post.id %>/like" method="GET">
+    <form action="/posts/<%= post.id %>/like" method="GET" class="form-like">
         <div class="like">
             <div class="btn like-group">
                 <div class="btn-like"><a>喜欢</a></div>
@@ -36,7 +36,7 @@
         </div>
     </form>
 
-    <%- include('components/comments', {comments: comments}) %>
+    <%- include('components/comments', {comments: comments, post: post}) %>
 
 </div>
 
@@ -44,7 +44,7 @@
     $('.like-group').click((e) => {
         if ($('.like-group').hasClass('do-like') != true) {
             $('.like-group').addClass('do-like');
-            $('form').submit();
+            $('.form-like').submit();
             // $('.modal-wrap').addClass('.modal-wrap-like');
         } else {
             $('.like-group').removeClass('do-like');

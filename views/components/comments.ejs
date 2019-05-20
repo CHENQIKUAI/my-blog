@@ -3,35 +3,90 @@
         <a class="avatar-icon" data-title="<%= nickname %>">
             <img class="avatar" src="/images/<%= avatar %>">
         </a>
-        <form action="/comment/add" method="post"></form>
-        <textarea name="comment" cols="30" rows="10" placeholder="写下你的评论"></textarea>
+        <form class="form-comment" action="/comments/add" method="post" enctype="multipart/form-data">
+            <textarea class="textarea-comment" name="content" cols="30" rows="10" placeholder="写下你的评论"></textarea>
+            <input type="text" name="postId" value="<%= post.id %>" hidden>
+            <input type="text" name="avatar" value="<%= avatar %>" hidden>
+            <input type="text" name="nickname" value="<%= nickname %>" hidden>
+            <input type="text" name="email" value="<%= email %>" hidden>
+        </form>
     </div>
 
     <div class="write-function-block">
         <div class="hint">Ctrl+Enter 发表</div>
-        <a class="btn btn-send">发送</a>
-        <a class="btn cancel">取消</a>
+        <span class="span-btn-send-comment">
+            <a class="btn btn-send-comment">发送</a>
+        </span>
+        <span class="span-btn-cancel">
+            <a class="btn cancel">取消</a>
+        </span>
     </div>
 </div>
 
 
 <div class="comment-list">
+    <div class="top-title">
+        <% if(comments.length !==0 ){ %>
+        <span><%= comments.length %>条评论</span>
+        <% }else{ %>
+        <span>评论</span>
+        <% } %>
+    </div>
+
     <%  comments.forEach((comment, index) => {  %>
-    <p><%= comment.content %></p>
+    <div class="comment-item">
+        <div class="author">
+            <img class="comment-avatar avatar" src="/images/<%= comment.author.avatar %>">
+            <div class="info">
+                <span class="comment-name"><%= comment.author.nickname %></span>
+                <div class="meta">
+                    <span><%= index+1 %>楼</span>
+                    ·
+                    <span class="time"><%= comment.time %></span>
+                </div>
+            </div>
+            <% if(comment.author.email == email || post.email == email) {%>
+            <a href="/comments/remove/<%= comment._id %>" class="delete-comment edit">删除</a>
+            <% }%>
+        </div>
+        <div class="comment-content">
+            <p><%= comment.content %></p>
+        </div>
+    </div>
     <% }) %>
 </div>
 
 <script>
+    const submitFunc = () => {
+        if ($('.textarea-comment').val() !== '') {
+            $('.form-comment').submit();
+            console.log($('.textarea-comment').val());
+        } else {
+            alert("请输入评论")
+        }
+    }
+
+    hotkeys('ctrl+enter', (event, handler) => {
+        switch (handler.key) {
+            case "ctrl+enter":
+                alert('you pressed ctrl+enter!');
+                break;
+        }
+    });
+
+    $('.textarea-comment').on('keydown', (e) => {
+        if (e.keyCode === 13 && e.ctrlKey) {
+            submitFunc();
+        };
+    })
+
+
     $('.new-comment textarea').focus((e) => {
         $('.write-function-block').fadeIn();
     })
 
-    $('.btn-send').click((e) => {
-        if ($('.new-comment-container').val() !== '') {
-            $('.new-comment-container form').submit();
-        } else {
-
-        }
+    $('.btn-send-comment').click((e) => {
+        submitFunc();
     });
 
     $('.cancel').click((e) => {

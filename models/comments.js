@@ -1,4 +1,5 @@
 const commentModel = require('../lib/mongo').commentModel;
+const postModel = require('../lib/mongo').postModel
 
 module.exports = {
     getCommentsByPostId: (postId) => {
@@ -10,6 +11,7 @@ module.exports = {
     },
 
     AddComment: (comment) => {
+        postModel.updateOne({ id: comment.postId }, { $inc: { view: -1 } }).exec();
         const newComment = new commentModel(comment);
         return newComment.save();
     }
