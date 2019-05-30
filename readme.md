@@ -17,14 +17,14 @@ node ./bin/www
 
 # 截图
 
-![signup](E:\WorkSpace\WebCode\web\newBlog\screenshot\signup.png)
+![signup](.\screenshot\signup.png)
 
-![signin](E:\WorkSpace\WebCode\web\newBlog\screenshot\signin.png)
+![signin](.\screenshot\signin.png)
 
-![posts](E:\WorkSpace\WebCode\web\newBlog\screenshot\posts.png)
+![posts](.\screenshot\posts.png)
 
-![post](E:\WorkSpace\WebCode\web\newBlog\screenshot\post.png)
+![post](.\screenshot\post.png)
 
-![write](E:\WorkSpace\WebCode\web\newBlog\screenshot\write.png)
+![write](.\screenshot\write.png)
 
-![](E:\WorkSpace\WebCode\web\newBlog\screenshot\edit.png)
+![](.\screenshot\edit.png)
