@@ -69,7 +69,6 @@ a {
 }
 
 .post-container {
-  width: 65%;
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
   padding: 20px 0;
@@ -286,6 +285,41 @@ a {
   border-bottom: 1px solid #f0f0f0;
 }
 
-.comment-content{
+.comment-content {
   padding: 20px 0 10px 0;
+}
+
+.hotPost-comment {
+  padding: 20px 5px;
+}
+
+
+.rank {
+  width: 50px;
+  text-align: center;
+  color: #f26d5f;
+}
+
+
+.rank_title {
+  width: 200px;
+  color: #0078b6;
+}
+
+.rank_title a:hover {
+  text-decoration: none;
+  color: #0078b6;
+}
+
+.hotPost-singleOne:hover {
+  background-color: #F2F2F5;
+}
+
+.rank_count {
+  color: #808080;
+  margin-left: 10px;
+}
+
+.hot-pages {
+  margin-bottom: 20px;
 }

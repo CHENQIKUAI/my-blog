@@ -8,7 +8,7 @@ module.exports = {
     },
 
     getAll: () => {
-        return postModel.find();
+        return postModel.find().sort({'_id':-1});
     },
 
     getPostById: async (id) => {

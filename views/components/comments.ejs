@@ -1,3 +1,5 @@
+<% if(email){ %>
+
 <div class="new-comment">
     <div class="new-comment-container">
         <a class="avatar-icon" data-title="<%= nickname %>">
@@ -23,6 +25,7 @@
     </div>
 </div>
 
+<% } %>
 
 <div class="comment-list">
     <div class="top-title">
@@ -56,6 +59,7 @@
     <% }) %>
 </div>
 
+
 <script>
     const submitFunc = () => {
         if ($('.textarea-comment').val() !== '') {
@@ -66,8 +70,8 @@
         }
     }
 
-    $('.textarea-comment').on('keydown', (e) => {
-        if (e.keyCode === 13 && e.ctrlKey) {
+    $('.textarea-comment').keydown((e) => {
+        if (e.key === 'Enter' && e.ctrlKey) {
             submitFunc();
         };
     })

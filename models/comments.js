@@ -15,5 +15,9 @@ module.exports = {
         postModel.updateOne({ id: comment.postId }, { $inc: { view: -1 } }).exec();
         const newComment = new commentModel(comment);
         return newComment.save();
+    },
+
+    getAllCommonts: () => {
+        return commentModel.find();
     }
 }

@@ -1,7 +1,10 @@
 var express = require('express');
+var router = express.Router();
 const postFunc = require('../models/posts');
 const commentFunc = require('../models/comments');
-var router = express.Router();
+const hot = require('../models/hot');
+
+
 Date.prototype.format = function (fmt) {
     var o = {
         "M+": this.getMonth() + 1,                 //月份 
@@ -24,13 +27,14 @@ Date.prototype.format = function (fmt) {
 }
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-    postFunc.getAll().then((result) => {
-        result.reverse();
-        res.render('posts', { posts: result });
-    }).catch((err) => {
-        res.send(err);
-    });;
+router.get('/', async (req, res, next) => {
+
+    let posts = await postFunc.getAll();
+    let posts2 = await hot.sortByComments();
+    let posts3 = await hot.sortByLikes();
+    let posts4 = await hot.sortByViews();
+    let data = { posts: posts, hotPostByComments: posts2, hotPostByViews: posts4, hotPostByLikes: posts3 };
+    res.render('posts', data);
 
 });
 

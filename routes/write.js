@@ -30,7 +30,7 @@ router.post('/', checkLogin, function (req, res, next) {
     postFunc.getAll().then((result) => {
         let id = 0;
         if (result.length != 0) {
-            id = result[result.length - 1].id + 1
+            id = result[0].id + 1
         }
         const post = {
             id: id,

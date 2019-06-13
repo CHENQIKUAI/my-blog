@@ -1,7 +1,90 @@
 <%- include('header') %>
 
-<% posts.forEach((post, index) => { %>
-<%- include('components/post-container', { post: post}) %>
-<% }) %>
+<div class="row">
+    <div class="col-7">
+        <% posts.forEach((post, index) => { %>
+        <%- include('components/post-container', { post: post}) %>
+        <% }) %>
+    </div>
+
+    <div class="col-5">
+        <div class="hotPost-comment">
+            <div class="hot-pages">
+
+                <h3>高评</h3>
+                <table>
+                    <tr class="hotPost-singleOne">
+                        <td class="rank">序号</td>
+                        <td class="rank_title">
+                            标题
+                        </td>
+                    </tr>
+
+                    <% hotPostByComments.forEach((post, index) => { %>
+                    <tr class="hotPost-singleOne">
+                        <td class="rank"><%= index+1 %></td>
+                        <td class="rank_title">
+                            <a href="/posts/<%= post.id %>"><%= post.title %></a>
+                            <span class="rank_count">
+                                <%= post.countComments %>
+                            </span>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </table>
+            </div>
+
+            <div class="hot-pages">
+                <h3>高赞</h3>
+                <table>
+                    <tr class="hotPost-singleOne">
+                        <td class="rank">序号</td>
+                        <td class="rank_title">
+                            标题
+                        </td>
+                    </tr>
+
+                    <% hotPostByLikes.forEach((post, index) => { %>
+                    <tr class="hotPost-singleOne">
+                        <td class="rank"><%= index+1 %></td>
+                        <td class="rank_title">
+                            <a href="/posts/<%= post.id %>"><%= post.title %></a>
+                            <span class="rank_count">
+                                <%= post.like %>
+                            </span>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </table>
+            </div>
+
+            <div class="hot-pages">
+
+                <h3>高看</h3>
+                <table>
+                    <tr class="hotPost-singleOne">
+                        <td class="rank">序号</td>
+                        <td class="rank_title">
+                            标题
+                        </td>
+                    </tr>
+
+                    <% hotPostByViews.forEach((post, index) => { %>
+                    <tr class="hotPost-singleOne">
+                        <td class="rank"><%= index+1 %></td>
+                        <td class="rank_title">
+                            <a href="/posts/<%= post.id %>"><%= post.title %></a>
+                            <span class="rank_count">
+                                <%= post.view %>
+                            </span>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <%- include('footer') %>
